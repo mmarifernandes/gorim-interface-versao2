@@ -1,0 +1,23 @@
+@import "../../../styles.scss";
+.parcel__form {
+    .table {
+        td {
+            padding-bottom: 0px;
+            font-size: 14px;
+        }
+        span {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .form-group,
+        .form-check {
+            margin-bottom: 10px;
+        }
+    }
+    &--qtd {
+        width: 45px;
+        padding: 5px;
+        height: 30px;
+        margin-left: 10px;
+    }
+}

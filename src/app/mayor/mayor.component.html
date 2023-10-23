@@ -1,0 +1,110 @@
+<app-alert></app-alert>
+<div *ngIf="infoPref != null">
+    <div class="content pt-5 pb-5">
+        <div *ngIf="(infoMundo$ | async) as mundo">
+            <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+            
+                <app-header
+                    nomePersonagem="{{infoPref.nome}} (Prefeito)"
+                    [dinheiros]="infoPref.caixa"
+                    [cidade]="infoPref.cidade"
+                    [rodada]="mundo.rodada"
+                    [poluicaoMundo]="mundo.poluicaoMundo"
+                    saldo="Caixa da Prefeitura"
+                ></app-header>
+                <hr>
+        
+                <i tabindex="0" (keyup.space)="sidebar.toggle()" (click)="sidebar.toggle()" class="fa fa-bars mr-2"></i>
+        
+                <div class="row">
+                    <div class="col-md-8 col-xl-7">
+                        <mat-tab-group mat-align-tabs="center">
+                            <mat-tab label="Ações">
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title class="title">
+                                                Usar Ação Ambiental
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <app-environmental-action
+                                            [acoesAmbientais]="infoPref.acoesAmbientais"
+                                            [idPref]="idPref"
+                                        ></app-environmental-action>
+                                        <p class="mt-3">Ações Ambientais a serem aplicadas no fim da jogada:</p>
+                                        <span *ngIf="environmentalActions.length == 0">Ainda não foram registradas multas.</span>
+                                        <div class="row">
+                                            <div class="col-md-3 light-border" *ngFor="let acao of environmentalActions">
+                                                <span class="close red" (click)="removeAction(acao)">x</span>
+                                                <h5>{{ infoPref.acoesAmbientais[acao].tipo }}</h5>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title class="title">
+                                                Mudar Taxas de Imposto
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <app-taxes
+                                            [taxas]="infoPref.taxas"
+                                            [idPref]="idPref"
+                                        ></app-taxes>
+                                        <p class="mt-3">Taxas a serem aplicadas no fim da jogada:</p>
+                                        <span *ngIf="environmentalActions.length == 0">Ainda não foram registradas multas.</span>
+                                        <div class="row">
+                                            <div class="col-md-3 light-border" *ngFor="let taxa of taxes">
+                                                <span class="close red" (click)="removeTax(taxa)">x</span>
+                                                <h5>Tipo {{ taxa.tipo }}</h5>
+                                                <p>{{ taxa.taxa }}</p>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </mat-tab>
+                            <mat-tab label="Tabelas de Valores">
+                                <app-table-values
+                                    role='prefeito'
+                                    [cidade]="infoPref.cidade"
+                                ></app-table-values>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="col-md-4 col-xl-5">
+                        <a
+                            href="/{{idJogo}}/historico-prefeito/{{idPref}}"
+                            target="_blank"
+                            class="btn btn--primary mb-2"
+                        >Abrir histórico</a>
+                        <app-transfer [idJogo]="idJogo" [idPessoa]="idPref" [etapa]="etapa"></app-transfer>
+                        <!--button
+                            class="btn btn--secondary mt-3"
+                            (click)="finalizarJogada()"
+                            [disabled]="!liberaBotao"
+                        >Finalizar jogada</button>
+                        <app-inline-alert
+                            [message]="inLineAlertButton"
+                        ></app-inline-alert-->
+                    </div>
+                </div>
+                
+                <app-sidebar #sidebar>
+                    <div class="container">
+                        <div class="row">
+                            <h3>Sugestões do Vereador</h3>
+                            <app-suggestion-list
+                                [idJogo]="idJogo"
+                                [idPref]="idPref"
+                            ></app-suggestion-list>
+                        </div>
+                    </div>
+                </app-sidebar>
+            </div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

@@ -1,0 +1,12 @@
+<div id="modal-content-wrapper">
+    <header class="text-center" id="modal-header">
+        <h1 id="modal-title">{{ content.modalTitle }}</h1>
+    </header>
+    <section class="text-center" id="modal-body">
+        <p>{{ content.modalContent }}</p>
+    </section>
+    <footer class="text-center" id="modal-footer">
+        <button mat-raised-button class="btn btn-warning" id="modal-cancel-button" (click)="action(false)">{{ content.modalCancelBtnText }}</button>
+        <button mat-raised-button class="btn btn-success" id="modal-action-button" (click)="action(true)">{{ content.modalConfirmBtnText }}</button>
+    </footer>
+</div>

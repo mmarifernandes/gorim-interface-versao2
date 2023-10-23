@@ -1,0 +1,55 @@
+
+<div class="content pt-5 pb-5">
+    <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+        <div *ngIf="gameoverData == null; else showPage">
+            <div class="text-center">
+                <h3>Finalizando jogo {{ idJogo }}</h3>
+            </div>
+            <div class="container margin-top pt-3 row justify-content-md-center">
+                <img src="../../assets/imgs/loading.gif" alt="loading">
+            </div>
+        </div>
+        <ng-template #showPage>
+            <div class="mb-3">
+                <h2 class="text-center pt-2 pb-3">Resumo do Jogo {{ idJogo }}</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-3">
+                        <p>Rodada {{ gameoverData.rodada }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <p>Etapa {{ gameoverData.etapa }}</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <p>Poluição Mundial {{ gameoverData.poluicaoMundo*100 }}%</p>
+                    </div>
+                </div>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="title">
+                                Empresários e Agricultores
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-accordion *ngFor="let personagem of gameoverData.resumoJogadores">
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="title">
+                                        {{ personagem.papel }} {{ personagem.nome }}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="row align-items-center">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="history-list-info">Cidade: {{ personagem.cidade }}</div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="history-list-info">Saldo final: D${{ personagem.saldo }}</div>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </ng-template>
+    </div>
+</div>

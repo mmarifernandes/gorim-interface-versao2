@@ -1,0 +1,109 @@
+<div class="history content pt-5 pb-5">
+    <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+        <div class="mb-3"  *ngIf="history != null; else loading">
+            <h2 class="text-center pt-2 pb-3">Histórico {{ history.nome }} </h2>
+            <mat-accordion *ngFor="let rodada of history.rodadas">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="title">
+                            Rodada {{ rodada.rodada }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-3">
+                            <div class="history-list-info">Saldo Anterior: D${{ rodada.saldoAnterior }}</div>
+                        </div>
+                    </div>
+                    <h3><span style="color: lightgreen;">Créditos</span></h3>
+                    <div class="row align-items-center">
+                        <div class="col-md-3 mb-3">
+                            <div class="history-list-info">Produtividade: D${{ rodada.produtividade }}</div>
+                        </div>
+                        <div class="col-md-3 mb-3" *ngIf="rodada.transferencias.recebido">
+                            <div class="row" *ngFor="let recebida of rodada.transferencias.recebido">
+                                <div class="col-md-12">
+                                    <p>Transferencias Recebidas</p>
+                                </div>
+                                <div class="col-md-12 text-left">
+                                    - Recebido de: {{ recebida.nome }} - D${{ recebida.valor }}.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><span style="color: lightsalmon;">Débitos</span></h3>
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3">
+                            <div class="history-list-info">Imposto: D${{ rodada.imposto }}</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="history-list-info" *ngIf="rodada.multa > 0">Multa: D${{ rodada.multa }}</div>
+                        </div>
+                        <div class="col-md-4 mb-3" *ngIf="rodada.transferencias.enviado">
+                            <div class="row" *ngFor="let enviada of rodada.transferencias.enviado">
+                                <div class="col-md-12">
+                                    <p>Transferencias Enviadas</p>
+                                </div>
+                                <div class="col-md-12 text-left">
+                                    - Enviado para: {{ enviada.nome }} - D${{ enviada.valor }}.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><span style="color: grey;">Info Pessoal</span></h3>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="history-list-info">Saldo Atual: D${{ rodada.saldoAtual }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="history-list-info">Poluição Pessoal: {{ rodada.poluicaoPessoal | number:'.0-2' }}</div>
+                        </div>
+                    </div>
+                    <h3><span style="color: grey;">Info Mundo</span></h3>
+                    <div class="container row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="history-list-info">Poluição Causada no Mundo: {{ rodada.poluicaoCausadaMundo | number:'.0-6' }}%</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="history-list-info">Poluição Mundial: {{ rodada.poluicaoMundial | number:'.0-2' }}%</div>
+                        </div>
+                    </div>
+                    <div class="container row">
+                        <div class="row col-md-12 mb-3">
+                            <div class="col-md-12">
+                                <b>Ações Ambientais utilizadas pelo Prefeito:</b>
+                            </div>
+                            <div class="container row" *ngIf="rodada.acoesUtilizadas.length > 0; else nenhumaAcao">
+                                <div class="col-md-4" *ngFor="let acao of rodada.acoesUtilizadas">
+                                    {{ acao }}
+                                </div>
+                            </div>
+                            <ng-template #nenhumaAcao>
+                                <div class="col-md-12">
+                                    Não foi usada nenhuma Ação Ambiental essa rodada.
+                                </div>
+                            </ng-template>
+                        </div>
+                        <div class="row col-md-12 mb-3">
+                            <div class="col-md-12">
+                                <b>Taxas de imposto modificadas pelo Prefeito:</b>
+                            </div>
+                            <div class="container row" *ngIf="rodada.impostosModificados.length > 0; else nenhumaTaxa">
+                                <div class="col-md-4" *ngFor="let imposto of rodada.impostosModificados">
+                                    <p>Tipo {{ imposto.tipo }} para: <span *ngIf="imposto.tipo==1">D${{ imposto.taxa }}</span><span *ngIf="imposto.tipo > 1">{{ imposto.taxa*100 }}%</span></p>
+                                </div>
+                            </div>
+                            <ng-template #nenhumaTaxa>
+                                <div class="col-md-12">
+                                    Nenhuma taxa foi modificada nessa rodada.
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <ng-template class="mb-3" #loading>
+            <h2>{{ loadingMessage }}</h2>
+        </ng-template>
+    </div>
+</div>

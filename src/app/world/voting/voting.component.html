@@ -1,0 +1,70 @@
+<div class="p-3 voting__block">
+    <h3>Votação</h3>
+    <div *ngIf="showForm">
+        <form [formGroup]="votingForm" (submit)="votar()">
+            <div class="d-flex justify-content-between flex-column flex-xl-row" *ngIf="(candidatosFiscal$ | async) as candidatosFiscal">
+                <div class="ml-3 container">
+                    <label for="fiscalAmbiental" name="votoFis">Voto para Fiscal:</label>
+                    <mat-radio-group
+                        formControlName="fiscalAmbiental"
+                        aria-labelledBy="votoFis"
+                        name="fiscalAmbiental"
+                        (change)="carregaProximos($event, 1)"
+                    >
+                        <div *ngFor="let candidato of candidatosFiscal">
+                            <mat-radio-button
+                                value="{{ candidato.id }}"
+                                name="{{ candidato.nome }}"
+                                class="mr-3 col-md-6"
+                            >{{ candidato.nome }}</mat-radio-button>
+    
+                        </div>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between flex-column flex-xl-row" *ngIf="mostraPrefPart">
+                <div class="ml-3 container">
+                    <label for="prefeito" name="votoPref">Voto para Prefeito:</label>
+                    <mat-radio-group
+                        formControlName="prefeito"
+                        aria-labelledBy="votoPref"
+                        name="prefeito"
+                        (change)="carregaProximos($event, 2)"
+                    >
+                        <div *ngFor="let candidato of candidatosPrefeito">
+                            <mat-radio-button
+                                value="{{ candidato.id }}"
+                                name="{{ candidato.nome }}"
+                                class="mr-3 col-md-6"
+                            >{{ candidato.nome }}</mat-radio-button>
+                        </div>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between flex-column flex-xl-row" *ngIf="mostraVerPart">
+                <div class="ml-3 container">
+                    <label for="vereador" name="votoVer">Voto para Vereador:</label>
+                    <mat-radio-group
+                        formControlName="vereador"
+                        aria-labelledBy="votoVer"
+                        name="vereador"
+                    >
+                        <div *ngFor="let candidato of candidatosVereador">
+                            <mat-radio-button
+                                value="{{ candidato.id }}"
+                                name="{{ candidato.nome }}"
+                                class="mr-3 col-md-6"
+                            >{{ candidato.nome }}</mat-radio-button>
+                        </div>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Votar</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center" *ngIf="!showForm">
+        <span class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Voto enviado!</span>
+    </div>
+</div>

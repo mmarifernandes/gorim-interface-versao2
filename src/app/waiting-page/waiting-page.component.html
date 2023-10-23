@@ -1,0 +1,18 @@
+<div class="content pt-5 pb-5" *ngIf="infoMundo">
+    <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+        <div class="text-center">
+            <h3>Aguarde enquanto a próxima etapa não começa</h3>
+            <h5>Você será redirecionado automaticamente</h5>
+        </div>
+        <div class="container margin-top pt-3 row justify-content-md-center">
+            <img src="../../assets/imgs/loading.gif" alt="loading">
+        </div>
+        <div class="row">
+            <div class="col-md-12"><h4>Eleitos</h4></div>
+            <div class="col-md-2" *ngFor="let eleito of infoMundo.eleitos">{{eleito}}</div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

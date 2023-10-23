@@ -1,0 +1,44 @@
+<app-alert></app-alert>
+<div *ngIf="chatInfo != null">
+    <div class="content pt-5 pb-5" *ngIf="(mundo$ | async) as mundo">
+        <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+            <div class="row">
+                <div class="col-12">
+            
+                    <app-header
+                        [nomePersonagem]="chatInfo.nomePessoa"
+                        [cidade]="chatInfo.cidade"
+                        [rodada]="mundo.rodada"
+                        [poluicaoMundo]="mundo.poluicaoMundo"
+                    ></app-header>
+                    <!--div class="d-flex flex-column align-items-center justify-content-center pt-3 pb-3">
+                        <h1>Rodada: {{ mundo.rodada }}</h1>
+                        <h2>Etapa: {{ mundo.etapa }}</h2>
+                    </div-->
+                </div>
+            </div>
+            <div class="container pb-6">
+                <!--div class="row text-center">
+                    <div class="col-md-6">
+                        <p>Poluição Mundial {{ mundo.poluicaoMundo | number:'.0-2' }}%</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Produtividade Mundial {{ mundo.produtividadeMundo | number:'.0-2' }}%</p>
+                    </div>
+                </div-->
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 border text-center my-4 py-3 px-5">
+                        <h5><i class="fa fa-info-circle text-info" aria-hidden="true"></i> Você não é um dos jogadores eleitos. Converse com o Fiscal, o Prefeito e o Vereador de sua cidade para saber a intenção de jogada deles e espere a rodada terminar para continuar jogando.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><h4>Eleitos</h4></div>
+                <div class="col-md-2" *ngFor="let eleito of mundo.eleitos">{{eleito}}</div>
+            </div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

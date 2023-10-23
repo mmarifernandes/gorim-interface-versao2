@@ -1,0 +1,82 @@
+<app-alert></app-alert>
+<div *ngIf="emp != null">
+    <div class="content pt-5 pb-5"> <!--*ngIf="(infoEmp$ | async) as emp"-->
+        <div *ngIf="(infoMundo$ | async) as mundo">
+            <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+                <app-header
+                    [nomePersonagem]="emp.nome"
+                    [dinheiros]="emp.saldo"
+                    [cidade]="emp.cidade"
+                    [rodada]="mundo.rodada"
+                    [poluicaoMundo]="mundo.poluicaoMundo"
+                ></app-header>
+                <hr>
+                
+                <i tabindex="0" (keyup.space)="sidebar.toggle()" (click)="sidebar.toggle()" class="fa fa-bars mr-2"></i>
+
+                <div class="row">
+                    <div class="col-md-8 col-xl-7">
+                        <mat-tab-group mat-align-tabs="center">
+                            <mat-tab label="Orçamentos">
+                                <app-order-product
+                                    [idJogo]="idJogo"
+                                    [idEmp]="idEmp"
+                                    [produtos]="emp.produtos"
+                                    [nomeAgricultores]="nomeAgricultores"
+                                ></app-order-product>
+                            </mat-tab>
+                            <mat-tab label="Tabelas de Valores">
+                                <app-table-product-values
+                                    role="empresario"
+                                    [produtos]="produtos"
+                                ></app-table-product-values>
+                                <app-table-values
+                                    role="empresario"
+                                    [tipoEmpresario]="emp.setor"
+                                ></app-table-values>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="col-md-4 col-xl-5">
+                        <a
+                            href="/{{idJogo}}/historico-empresario/{{idEmp}}"
+                            target="_blank"
+                            class="btn btn--primary mb-2"
+                            *ngIf="mundo.rodada > 1"
+                        >Abrir histórico</a>
+                        <app-transfer [idJogo]="idJogo" [idPessoa]="idEmp" [etapa]="etapa" ></app-transfer>
+                        <app-voting
+                            *ngIf="isElectionTurn(mundo.rodada)"
+                            [idJogo]="idJogo"
+                            [cidade]="emp.cidade"
+                            [idPessoa]="idEmp"
+                        ></app-voting>
+                        <!--button
+                            class="btn btn--secondary mt-3"
+                            (click)="finalizarJogada()"
+                            [disabled]="!liberaBotao"
+                        >Finalizar jogada</button>
+                        <app-inline-alert
+                            [message]="inLineAlertButton"
+                        ></app-inline-alert-->
+                    </div>
+                </div>
+                
+                <app-sidebar #sidebar>
+                    <div class="container">
+                        <div class="row">
+                            <h3>Respostas dos Agricultores para os orçamentos</h3>
+                            <app-vendacard
+                                [idJogo]="idJogo"
+                                [idEmp]="idEmp"
+                            ></app-vendacard>
+                        </div>
+                    </div>
+                </app-sidebar>
+            </div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <h3 class="text-center">Novo Jogo</h3>
+    <form [formGroup]="beginForm" (submit)="comecarJogo()">
+        <div>
+            <label for="quantidadeJogadores">Quantidade de Jogadores<span class="requiredStar">*</span></label>
+            <input #quantidadeJogadoresInput
+                formControlName="quantidadeJogadores"
+                type="number"
+                min="6"
+                max="16"
+                class="form-control form-control-sm"
+                placeholder="Pelo menos 6"
+                (focus)="showMessage()"
+            >
+            <app-inline-alert
+                *ngIf="shouldShowMessage"
+                message="Quantidade deve ser maior que 6"
+                [type]="messageType">
+            ></app-inline-alert>
+            <button class="btn btn--secondary mt-3" type="submit" [disabled]="beginFormButtonDisabled">Começar <span *ngIf="beginFormButtonDisabled"><img src="../../../assets/imgs/loading.gif" height="20px" width="20px "/></span></button>
+        </div>
+    </form>
+</div>

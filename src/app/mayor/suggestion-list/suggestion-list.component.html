@@ -1,0 +1,24 @@
+<p class="text-center text-muted" *ngIf="(suggestions.length < 1)"> 
+    Sem sugestões do Vereador.
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-6" *ngFor="let suggestion of suggestions">
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="isTaxSuggestion(suggestion); else acaoAmbiental">
+                        <h4 class="card-text">Taxa de imposto tipo {{ suggestion.imposto.tipo + 1 }}</h4>
+                        <p class="card-text">Mudar para: <b>{{ suggestion.imposto.taxa }}</b></p>
+                    </div>
+                    <ng-template #acaoAmbiental>
+                        <h4 class="card-text">Aplicar Ação Ambiental</h4>
+                        <p class="card-text">Tipo: <b>{{ suggestion.acaoAmbiental }}</b></p>
+                    </ng-template>
+                    <a class="btn btn-warning" (click)="sendResponse(suggestion, false)" >Negar</a>
+                    <a class="btn btn-success" (click)="sendResponse(suggestion, true)" >Aceitar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

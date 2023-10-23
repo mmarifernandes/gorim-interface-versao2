@@ -1,0 +1,80 @@
+<app-alert></app-alert>
+<div *ngIf="agr != null">    
+    <div class="content pt-5 pb-5">
+        <div *ngIf="(infoMundo$ | async) as mundo">
+            <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+            
+                <app-header
+                    [nomePersonagem]="agr.nome"
+                    [dinheiros]="agr.saldo"
+                    [cidade]="agr.cidade"
+                    [rodada]="mundo.rodada"
+                    [poluicaoMundo]="mundo.poluicaoMundo"
+                ></app-header>
+                <hr>
+        
+                <i
+                    tabindex="0"
+                    (keyup.space)="sidebar.toggle()"
+                    (click)="sidebar.toggle()"
+                    class="fa fa-bars mr-2"
+                ></i>
+        
+                <div class="row">
+                    <div class="col-md-8 col-xl-7">
+                        <mat-tab-group mat-align-tabs="center">
+                            <mat-tab label="Parcelas">
+                                <app-parcel
+                                    [idJogo]="idJogo"
+                                    [produtos]="produtos"
+                                    [idAgr]="idAgr"
+                                    [rodada]="mundo.rodada"
+                                ></app-parcel>
+                            </mat-tab>
+                            <mat-tab label="Tabelas de Valores">
+                                <app-table-product-values
+                                    role='agricultor'
+                                    [produtos]="produtos"
+                                ></app-table-product-values>
+                                <app-table-values
+                                    role="agricultor"
+                                ></app-table-values>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="col-md-4 col-xl-5">
+                        <a
+                            href="/{{idJogo}}/historico-agricultor/{{idAgr}}"
+                            target="_blank"
+                            class="btn btn--primary mb-2"
+                            *ngIf="mundo.rodada > 1"
+                        >Abrir histórico</a>
+                        <app-transfer [idJogo]="idJogo" [idPessoa]="idAgr" [etapa]="etapa" ></app-transfer>
+                        <app-voting
+                            *ngIf="isElectionTurn(mundo.rodada)"
+                            [idJogo]="idJogo"
+                            [cidade]="agr.cidade"
+                            [idPessoa]="idAgr"
+                        ></app-voting>
+                    </div>
+                </div>
+            </div>
+                
+            <app-sidebar #sidebar>
+                <div class="container">
+                    <div class="row">
+                        <h3>Orçamentos</h3>
+                        <app-vendacard
+                            [idJogo]="idJogo"
+                            [idAgr]="idAgr"
+                            [quantidadeJogadores]="mundo.quantidadeJogadores"
+                        ></app-vendacard>
+                    </div>
+                </div>
+            </app-sidebar>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

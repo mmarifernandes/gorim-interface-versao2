@@ -1,0 +1,21 @@
+<p class="text-center text-muted" *ngIf="(responses.length < 1)"> 
+    Sem respostas do Prefeito.
+</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-6" *ngFor="let response of responses">
+            <div class="card">
+                <div class="card-body {{ getColour(response.aceito) }}">
+                    <div *ngIf="isTaxSuggestion(response); else acaoAmbiental">
+                        <h4 class="card-text">Taxa de imposto tipo {{ response.imposto.tipo + 1 }}</h4>
+                        <p class="card-text">Mudar para: <b>{{ response.imposto.taxa }}</b></p>
+                    </div>
+                    <ng-template #acaoAmbiental>
+                        <h4 class="card-text">Aplicar Ação Ambiental</h4>
+                        <p class="card-text">Tipo: <b>{{ response.acaoAmbiental }}</b></p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

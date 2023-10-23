@@ -1,0 +1,41 @@
+<div class="container" id="containerJoin">
+    <div>
+    <h3 class="text-center">Ingressar em um Jogo</h3>
+    <form [formGroup]="jogoForm" (submit)="getInfoPessoas()">
+        <label for="idJogo">ID do Jogo<span style="color: red">*</span></label>
+        <div class="input-group mb-3">
+            <input type="number" class="form-control" formControlName="idJogo">
+            <div class="input-group-append">
+                <button class="btn btn--primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+    <div id="jogos">
+    <h5 style="font-size: 16px;">Jogos disponíveis</h5>
+    <ul>
+        <li *ngFor= "let mundo of mundos" (click)="getInfoPessoasRoom(mundo);">
+            <button id="buttonList" [class.selected]="mundo === selectedId" type="button" (click)="onSelect(mundo)">   
+            {{mundo}}
+            </button>
+        </li>
+    </ul>
+</div>
+    <ng-container *ngIf="showPessoas">
+        <form [formGroup]="joinForm" (submit)="joinGame()" style="margin-left: 5%;">
+            <mat-form-field appearance="legacy">
+                <mat-label>Personagem</mat-label>
+                <mat-select formControlName="personagem">
+                    <div *ngFor="let pessoa of pessoas">
+                        <mat-option
+                            [value]="pessoa.id"
+                        >
+                            {{pessoa.nome | titlecase}}
+                        </mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
+            <button class="btn btn--secondary mt-3" type="submit">Entrar</button>
+        </form>
+    </ng-container>
+</div>

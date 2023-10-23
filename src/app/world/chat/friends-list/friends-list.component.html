@@ -1,0 +1,27 @@
+<div *ngIf="friendsList.size > 0">
+    <mat-accordion class="list-container w-100" hideToggle>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false"
+                             class="custom-body">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Chat
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="list-area">
+                <ul class="friends-listing">
+                    <li *ngFor="let friendCell of getFriendsList()">
+                        <button type="button" class="btn btn-light w-100" (click)="openNewRoom(friendCell.friend.nomeCurto)">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm">{{ friendCell.friend.nome }}</div>
+                                    <div class="col-sm"><span class="new-message {{ getNewMessageCircleColour(friendCell.hasNewMessage)}}"></span></div>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

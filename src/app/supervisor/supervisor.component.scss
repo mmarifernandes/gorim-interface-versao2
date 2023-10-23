@@ -1,0 +1,15 @@
+@import '../../styles.scss';
+
+.align-center {
+    text-align: center;
+}
+
+.light-border {
+    border-right: 2px solid rgba(232, 232, 232, 0.686);
+    border-bottom: 2px solid rgba(232, 232, 232, 0.686);
+    border-radius: 5%;
+}
+
+.red {
+    color: red;
+}

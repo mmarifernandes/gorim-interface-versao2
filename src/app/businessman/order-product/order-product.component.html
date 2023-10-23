@@ -1,0 +1,73 @@
+<div class="mt-3">
+    <div class="order-product">
+        <form [formGroup]="orcamentoForm" (submit)="adicionarOrcamento()" class="pt-2">
+            <h3>Fazer Orçamento</h3>
+            <div class="container row align-items-sm-center mb-sm-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="idAgr">Solicitante<span class="requiredStar">*</span></label>
+                    </div>
+                    <select #idAgr
+                        formControlName="idAgr"
+                        class="custom-select"
+                        id="idAgr"
+                    >
+                        <option
+                            *ngFor="let agricultor of nomeAgricultores"
+                            value="{{agricultor.id}}"
+                        >
+                            {{agricultor.nome}}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nomeProduto">Produto<span class="requiredStar">*</span></label>
+                    </div>
+                    <select #nomeProduto
+                        formControlName="idProduto"
+                        class="custom-select"
+                        id="idProduto"
+                    >
+                        <option
+                            *ngFor="let produto of produtos"
+                            value="{{produto.id}}"
+                        >
+                            {{produto.tipo | titlecase}}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="quantidade">Quantidade<span class="requiredStar">*</span></label>
+                    </div>
+                    <input #quantidade
+                        formControlName="quantidade"
+                        type="number"
+                        aria-label="quantidade"
+                        class="form-control"
+                        placeholder="Max. 6"
+                    >
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="preco">Preço<span class="requiredStar">*</span></label>
+                    </div>
+                    <select #preco
+                        formControlName="preco"
+                        class="custom-select"
+                        id="preco"
+                    >
+                        <option value="Baixo">Baixo</option>
+                        <option value="Médio">Médio</option>
+                        <option value="Alto">Alto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn--primary m-0">Confirmar</button>
+            </div>
+        </form>
+        <hr>
+    </div>
+</div>

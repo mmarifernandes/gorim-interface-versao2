@@ -1,0 +1,11 @@
+@import "../../../styles.scss";
+.header {
+    &__info {
+        &--text {
+            font-size: 16px;
+        }
+        &--money {
+            color: $money-color;
+        }
+    }
+}

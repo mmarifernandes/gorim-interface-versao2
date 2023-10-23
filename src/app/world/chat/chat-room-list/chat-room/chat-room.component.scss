@@ -1,0 +1,73 @@
+@import '../../chat.component.scss';
+
+.chat-room {
+    border-radius: 5px;
+    max-height: 500px;
+    padding: 0;
+    position: relative;
+}
+
+.messages-area {
+    overflow-y: scroll;
+    max-height: 300px;
+    margin: 0%;
+}
+
+ul {
+    list-style: none;
+}
+
+.messageBox {
+    width: 70%;
+    margin: 1px;
+    border-radius: 10px;
+    padding: .25em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+}
+.sentMessage {
+    float: right;
+    background-color: paleturquoise;
+}
+.receivedMessage {
+    float: left;
+    background-color: turquoise;
+}
+.messageTimestamp {
+    float: right;
+    font-size: 11px;
+    color: gray;
+}
+
+.infoMessage {
+    text-align: center;
+    box-shadow: 2px 2px 2px 1px grey;
+    font-size: 12px;
+}
+
+.replyArea {
+    width: 95%;
+    padding-top: 1%;
+    padding-left: 5%;
+}
+.replyTextArea {
+    display: inline-block;
+    margin: 0;
+    padding: .2em;
+    resize: none;
+}
+
+.close-button{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    top: -10px;
+    right: -10px;
+}

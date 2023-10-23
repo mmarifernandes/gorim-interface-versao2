@@ -1,0 +1,150 @@
+<div class="history content pt-5 pb-5">
+    <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+        <div class="mb-3" *ngIf="history != null; else loading">
+            <h2 class="text-center pt-2 pb-3">Histórico {{ history.nome }} (Fiscal) </h2>
+            <mat-accordion *ngFor="let rodada of history.rodadas">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="title">
+                            Rodada {{ rodada.rodada }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <h5>Fiscal Ambiental: {{ rodada.nome }}</h5>
+                    <mat-accordion *ngFor="let etapa of rodada.etapas">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="title">
+                                    Etapa {{ etapa.etapa }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row align-items-center">
+                                <div class="col-md-3 mb-3">
+                                    <div class="history-list-info">Saldo Anterior: D${{ etapa.saldoAnterior }}</div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-md-3 mb-3" *ngIf="etapa.transferencias.recebido">
+                                    <div class="row" *ngFor="let recebida of etapa.transferencias.recebido">
+                                        <div class="col-md-12">
+                                            <p>Transferencias Recebidas</p>
+                                        </div>
+                                        <div class="col-md-12 text-left">
+                                            - Recebido de: {{ recebida.nome }} - D${{ recebida.valor }}.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3" *ngIf="etapa.transferencias.enviado">
+                                    <div class="row" *ngFor="let enviada of etapa.transferencias.enviado">
+                                        <div class="col-md-12">
+                                            <p>Transferencias Enviadas</p>
+                                        </div>
+                                        <div class="col-md-12 text-left">
+                                            - Enviado para: {{ enviada.nome }} - D${{ enviada.valor }}.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3><span style="color: grey;">Info Pessoal</span></h3>
+                            <div class="row align-items-center">
+                                <div class="col-md-3 mb-3">
+                                    <div class="history-list-info">Saldo Atual: D${{ etapa.saldoAtual }}</div>
+                                </div>
+                            </div>
+                            <h3><span style="color: grey;">Info Mundo</span></h3>
+                            <div class="row align-items-center">
+                                <div class="col-md-3 mb-3">
+                                    <div class="history-list-info">Poluição Mundial: {{ etapa.poluicaoMundial | number:'.0-2' }}%</div>
+                                </div>
+                            </div>
+                            <div class="container row" *ngIf="etapa.etapa == 2">
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <b>Ações Ambientais utilizadas pelo Prefeito:</b>
+                                    </div>
+                                    <div class="container row" *ngIf="etapa.acoesAmbientais.length > 0; else nenhumaAcao">
+                                        <div class="col-md-4" *ngFor="let acao of etapa.acoesAmbientais">
+                                            {{ acao }}
+                                        </div>
+                                    </div>
+                                    <ng-template #nenhumaAcao>
+                                        <div class="col-md-12">
+                                            Não foi usada nenhuma Ação Ambiental essa rodada.
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <hr>
+                            <h3><span style="color: grey;">Empresários</span></h3>
+                            <div class="container" *ngFor="let empresario of etapa.empresarios">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 mb-12">
+                                        <div class="history-list-info"><b>Nome: {{ empresario.nome }}</b></div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="history-list-info">Produtividade: D${{ empresario.produtividade }}</div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="history-list-info">Poluição: {{ empresario.poluicao | number:'.0-2' }}</div>
+                                    </div>
+                                    <div class="col-md-4 mb-4" *ngIf="(etapa.etapa == 2) && (empresario.multa > 0)">
+                                        <div class="history-list-info">Multa aplicada: {{ empresario.multa }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h3><span style="color: grey;">Agricultores</span></h3>
+                            <div class="container" *ngFor="let agricultor of etapa.agricultores">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 mb-12">
+                                        <div class="history-list-info"><b>Nome: {{ agricultor.nome }}</b></div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="history-list-info">Produtividade: D${{ agricultor.produtividade }}</div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="history-list-info">Poluição: {{ agricultor.poluicaoMedia | number:'.0-2' }}</div>
+                                    </div>
+                                    <div class="col-md-4 mb-4" *ngIf="(etapa.etapa == 2) && (agricultor.multa > 0)">
+                                        <div class="history-list-info">Multa: D${{ agricultor.multa }}</div>
+                                    </div>
+                                </div>
+                                <h5><span style="color: lightblue;">Parcelas</span></h5>
+                                <div class="row align-items-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 mb-4 light-border" *ngFor="let parcela of agricultor.parcelas; let i=index">
+                                            <div class="history-list-info">
+                                                <b>Parcela {{ i+1 }}</b>
+                                            </div><br>
+                                            <div class="history-list-info">
+                                                Selo Verde: <span *ngIf="parcela.seloVerde; else seloVerde">Sim</span><ng-template #seloVerde>Não</ng-template>
+                                            </div><br>
+                                            <div class="history-list-info" *ngIf="parcela.semente">
+                                                Semente: {{parcela.semente}}
+                                            </div><br>
+                                            <div class="history-list-info" *ngIf="parcela.fertilizante">
+                                                Fertilizante: {{parcela.fertilizante}}
+                                            </div><br>
+                                            <div class="history-list-info" *ngIf="parcela.maqAgr">
+                                                <span *ngIf="isMaquina(parcela.maqAgr); else agrotoxico">Máquina:</span><ng-template #agrotoxico>Agrotóxico:</ng-template> {{parcela.maqAgr}}
+                                            </div><br>
+                                            <div class="history-list-info" *ngIf="parcela.pulverizador">
+                                                Pulverizador: Sim
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <ng-template class="mb-3" #loading>
+            <h2>{{ loadingMessage }}</h2>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+@import '../../styles.scss';
+p {
+    color: $main-color;
+    font-size: 25px;
+    font-family: $text-font;
+    font-weight: 900;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}

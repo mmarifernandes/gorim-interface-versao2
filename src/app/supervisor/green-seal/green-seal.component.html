@@ -1,0 +1,65 @@
+<div class="container">
+    <form [formGroup]="greenSealForm" (submit)="salvarGreenSeal()">
+        <div class="row d-flex">
+            <div class="input-group mb-6 col-md-6">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="idAgr">Agricultor</label>
+                </div>
+                <select #idAgr
+                    formControlName="idAgr"
+                    class="custom-select"
+                    id="idAgr"
+                >
+                    <option
+                        *ngFor="let agr of agricultores"
+                        value="{{agr.id}}"
+                    >
+                        {{agr.nome}}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group mb-6 col-md-6 align-content-center flex-wrap">
+                <mat-radio-group
+                    formControlName="atribuir"
+                    aria-labelled="Atribuir"
+                    name="atribuir"
+                >
+                    <mat-radio-button
+                        value="true"
+                        name="atribuir"
+                        class="mr-3"
+                    >Atribuir</mat-radio-button>
+
+                    <mat-radio-button
+                        value="false"
+                        name="tirar"
+                    >Tirar</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <mat-checkbox
+                formControlName="checked"
+                [checked]="allParcelsMarked"
+                [indeterminate]="someComplete()"
+                (change)="setAll($event.checked)"
+            >
+                Marcar Todas
+            </mat-checkbox><br>
+            <div class="ml-3" *ngFor="let parcela of parcelas">
+                <mat-checkbox
+                    formControlName="parcelas"
+                    [(ngModel)]="parcela.checked"
+                    (ngModelChange)="updateAllComplete()"
+                >
+                {{ parcela.nome }}
+                </mat-checkbox><br>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn--primary m-0">Registrar</button>
+            </div>
+        </div>
+    </form>
+</div>

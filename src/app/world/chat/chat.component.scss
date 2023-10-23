@@ -1,0 +1,127 @@
+@import '../../../styles.scss';
+
+.chatBar {
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 3px;
+    width: 98%;
+}
+
+.custom-body {
+    padding: 0%;
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 0px 10px !important;
+}
+
+@media(min-width:1080px){
+    .col {
+        padding-right: 10px;
+        padding-left: 10px;
+        position: fixed;
+        z-index: 3;
+        bottom: 5px;
+    
+        &.--lista-amigos {
+            width: 16%;
+            margin-left: 84%;
+        }
+    
+        &.--chat-room {
+            width: 21%;
+    
+            &.room-1 {
+                margin-left: 63%;
+            }
+    
+            &.room-2 {
+                margin-left: 42%;
+            }
+    
+            &.room-3 {
+                margin-left: 21%;
+            }
+    
+            &.room-4 {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media(max-width:1080px){
+    .col {
+        padding-right: 10px;
+        padding-left: 10px;
+        position: fixed;
+        z-index: 3;
+        bottom: 5px;
+    
+        &.--lista-amigos {
+            width: 16.66%;
+            margin-left: 83.34%;
+        }
+    
+        &.--chat-room {
+            width: 27.78%;
+    
+            &.room-1 {
+                margin-left: 55.56%;
+            }
+    
+            &.room-2 {
+                margin-left: 27.78%;
+            }
+    
+            &.room-3 {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media(max-width: 680px){
+    .col {
+        padding-right: 10px;
+        padding-left: 10px;
+        position: fixed;
+        z-index: 3;
+        bottom: 5px;
+    
+        &.--lista-amigos {
+            width: 20%;
+            margin-left: 80%;
+        }
+    
+        &.--chat-room {
+            width: 40%;
+    
+            &.room-1 {
+                margin-left: 40%;
+            }
+    
+            &.room-2 {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+// PARA SINALIZAR NOVAS MENSAGENS RECEBIDAS EM CHAT-ROOM E FRIENDS-LIST
+.new-message {
+    margin-left: 1%;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.green-circle {
+    background-color: green;
+}
+.transparent-circle {
+    background-color: transparent;
+}

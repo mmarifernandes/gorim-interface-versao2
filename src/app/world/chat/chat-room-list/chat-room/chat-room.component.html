@@ -1,0 +1,54 @@
+<div class="chat-room w-100">
+    <mat-accordion hideToggle>
+        <mat-expansion-panel  (opened)="panelOpenState = true"
+                              (closed)="panelOpenState = false"
+                              class="custom-body">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">{{ friendName }}</div>
+                            <div class="col-sm"><span class="new-message {{ getNewMessageCircleColour()}}"></span></div>
+                        </div>
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container messages-area" #scrollMe>
+                <ng-container *ngIf="messages.length == 0; else showMessages">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 messageBox infoMessage">
+                            Ainda não há mensagens com esse contato. Dê um 'Oi' para começar.
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #showMessages>
+                    <div #messagesDiv *ngFor="let message of messages">
+                        <div class="p-1 messageBox {{ isMine(message.senderName) }}">
+                            <span [innerHTML]="message.content"></span>
+                            <div class="messageTimestamp">{{ getHour(message.timestamp) }}</div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="replyArea">
+                <form [formGroup]="chatForm" (submit)="sendMessage()">
+                    <div class="input-group">
+                        <textarea
+                            formControlName="message"
+                            class="form-control replyTextArea"
+                            placeholder="Digite sua mensagem aqui"
+                            (keyup.enter)="enterPressed($event)"
+                            (focus)="seenNewMessages()"
+                        ></textarea>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                    </div>
+                </form>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <button type="button" class="close-button btn btn-danger" (click)="fecharChatRoom()"><i class="fas fa-times"></i></button>
+</div>

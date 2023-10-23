@@ -1,0 +1,123 @@
+<app-alert></app-alert>
+<div *ngIf="infoFis != null">
+    <div class="content pt-5 pb-5">
+        <div *ngIf="(infoMundo$ | async) as mundo">
+            <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+            
+                <app-header
+                    nomePersonagem="{{infoFis.nome}} (Fiscal)"
+                    [dinheiros]="infoFis.saldo"
+                    [cidade]="infoFis.cidade"
+                    [rodada]="mundo.rodada"
+                    [poluicaoMundo]="mundo.poluicaoMundo"
+                ></app-header>
+                <hr>
+        
+                <i tabindex="0" (keyup.space)="sidebar.toggle()" (click)="sidebar.toggle()" class="fa fa-bars mr-2"></i>
+        
+                <div class="row">
+                    <div class="col-md-8 col-xl-7">
+                        <mat-tab-group mat-align-tabs="center">
+                            <mat-tab label="Ações">
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title class="title">
+                                                Multar
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <app-fine
+                                            [idJogo]="idJogo"
+                                            [idFis]="idFis"
+                                            [cidade]="infoFis.cidade"
+                                        ></app-fine>
+                                        <h4 class="mt-3">Multas a serem aplicadas no fim da jogada:</h4>
+                                        <span *ngIf="fines.length == 0">Ainda não foram registradas multas.</span>
+                                        <div class="row">
+                                            <div class="col-md-3 light-border" *ngFor="let fine of fines">
+                                                <span class="close red" (click)="removeFine(fine)">x</span>
+                                                <div *ngIf="fine.idPessoa%2 == 0; else impar">
+                                                    <h5>{{ pessoas[(fine.idPessoa - (fine.idPessoa/2) - 1)].nome }}</h5>
+                                                </div>
+                                                <ng-template #impar>
+                                                    <h5>{{ pessoas[(fine.idPessoa - (fine.idPessoa/2) - 0.5)].nome }}</h5>
+                                                </ng-template>
+                                                <p>Tipo de multa: {{ nomeFines[fine.tipo-1] }}</p>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title class="title">
+                                                Selo Verde
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <app-green-seal
+                                            [idJogo]="idJogo"
+                                            [idFis]="idFis"
+                                            [cidade]="infoFis.cidade"
+                                        ></app-green-seal>
+                                        <h4 class="mt-3">Selos Verdes a serem aplicados no fim da jogada:</h4>
+                                        <span *ngIf="greenSeals.length == 0">Ainda não foram registrados.</span>
+                                        <div class="row">
+                                            <div class="col-md-3 light-border" *ngFor="let greenSeal of greenSeals">
+                                                <span class="close red" (click)="removeGreenSeal(greenSeal)">x</span>
+                                                <div *ngIf="greenSeal.idAgr%2 == 0; else impar">
+                                                    <h5>{{ pessoas[(greenSeal.idAgr - (greenSeal.idAgr/2) - 1)].nome }}</h5>
+                                                </div>
+                                                <ng-template #impar>
+                                                    <h5>{{ pessoas[(greenSeal.idAgr - (greenSeal.idAgr/2) - 0.5)].nome }}</h5>
+                                                </ng-template>
+                                                <p><span *ngIf="greenSeal.atribuir == 'true'; else desa">A</span><ng-template #desa>Desa</ng-template>tribuir nas parcelas:</p>
+                                                <div class="row">
+                                                    <div class="col-md-2" *ngFor="let parcela of greenSeal.parcelas">{{ parcela }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </mat-tab>
+                            <mat-tab label="Tabelas de Valores">
+                                <app-table-values
+                                    role="fiscalAmbiental"
+                                    [cidade]="infoFis.cidade"
+                                ></app-table-values>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="col-md-4 col-xl-5">
+                        <a
+                            href="/{{idJogo}}/historico-fiscalAmbiental/{{idFis}}"
+                            target="_blank"
+                            class="btn btn--primary mb-2"
+                        >Abrir histórico</a>
+                        <app-transfer [idJogo]="idJogo" [idPessoa]="idFis" [etapa]="etapa"></app-transfer>
+                    </div>
+                </div>
+                
+                <app-sidebar #sidebar>
+                    <div class="container">
+                        <div class="row">
+                            <h3>Agricultores que pediram Selo Verde</h3>
+                            <p class="text-center text-muted" *ngIf="(infoFis.pedidos.length < 1)"> 
+                                Nenhum agricultor pediu selo verde nessa rodada.
+                            </p>
+                            <div class="col-md-12 col-md-6" *ngFor="let pedido of infoFis.pedidos">
+                                <div class="card">
+                                    <div class="card-body align-center">
+                                        <h5 class="card-title">{{ pedido.nomeAgr }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </app-sidebar>
+            </div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

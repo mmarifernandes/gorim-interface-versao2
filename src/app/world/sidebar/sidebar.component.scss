@@ -1,0 +1,29 @@
+@import '../../../styles.scss';
+.side-bar {
+	position: fixed;
+	height: 100%;
+	width: 90%;
+	max-width: 320px;
+	margin: 0;
+	padding: 1em;
+	background: #f0f0f0;
+	top: 0;
+	left: -90%;
+	transition: left 0.3s ease-out;
+	z-index: 2;
+	overflow-y: scroll;
+}
+.active-sidebar {
+	.side-bar {
+		left: 0;
+	}
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0, 0.4);
+		z-index: 1;
+	}
+}

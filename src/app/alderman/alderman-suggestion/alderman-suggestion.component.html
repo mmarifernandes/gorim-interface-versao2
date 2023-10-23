@@ -1,0 +1,42 @@
+<div class="container">
+    <form [formGroup]="suggestionForm" (submit)="enviarSugestao()">
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-8">
+                <mat-radio-group
+                    formControlName="sugestao"
+                    aria-labelled="sugestao"
+                    name="sugestao"
+                    (change)="loadSelectOptions($event)"
+                >
+                    <div *ngFor="let option of radioOptions; let i=index">
+                        <mat-radio-button
+                            value="{{ i }}"
+                            name="{{ i }}"
+                            class="mr-3"
+                        >{{ option }}</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <div class="col-md-4" *ngIf="selector > -1">
+                <select
+                    formControlName="especificacao"
+                    class="custom-select"
+                    name="especificacao"
+                    id="especificacao"
+                ><span class="requiredStar">*</span>
+                    <option
+                        *ngFor="let data of selectData[selector]"
+                        value="{{ data }}"
+                    >
+                        {{ data }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn--primary m-0">Enviar Sugestão</button>
+            </div>
+        </div>
+    </form>
+</div>

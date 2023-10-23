@@ -1,0 +1,19 @@
+@import '../chat.component.scss';
+
+.list-container {
+    border-radius: 5px;
+    max-height: 500px;
+    padding: 0 !important;
+}
+
+.list-area {
+    overflow-y: scroll;
+    max-height: 300px;
+    margin: 0%;
+}
+
+.friends-listing {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}

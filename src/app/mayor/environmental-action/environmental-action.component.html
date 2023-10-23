@@ -1,0 +1,30 @@
+<div class="container">
+    <form [formGroup]="environmentalActForm" (submit)="salvarAcaoAmbiental()">
+        <div class="row d-flex justify-content-center mt-3">
+            <mat-checkbox
+                formControlName="checked"
+                [checked]="allOptionsChecked"
+                [indeterminate]="someComplete()"
+                (change)="setAll($event.checked)"
+                [disabled]="anyDisabled"
+            >
+                Marcar Todas
+            </mat-checkbox><br>
+            <div class="ml-3" *ngFor="let acao of formChecked">
+                <mat-checkbox
+                    formControlName="acoesAmbientais"
+                    [(ngModel)]="acao.checked"
+                    (ngModelChange)="updateAllComplete()"
+                    [disabled]="formControl[acao.id]"
+                >
+                {{ acao.tipo }}
+                </mat-checkbox><br>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn--primary m-0">Registrar</button>
+            </div>
+        </div>
+    </form>
+</div>

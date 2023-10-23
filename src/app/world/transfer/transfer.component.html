@@ -1,0 +1,27 @@
+<div class="transfer__block p-3">
+    <h3>Transferir dinheiros (D$)</h3>
+    <form action="" [formGroup]="transferForm" (submit)="submitTransferForm()">
+        <div class="d-flex justify-content-between flex-column flex-xl-row">
+            <mat-form-field appearance="legacy">
+                <mat-label>Para<span class="requiredStar">*</span></mat-label>
+                <mat-select formControlName="destinatario">
+                    <div *ngFor="let pessoa of pessoas">
+                        <mat-option
+                        [value]="pessoa.id"
+                        *ngIf="pessoa.id != idPessoa"
+                    >
+                        {{pessoa.nome | titlecase}}
+                    </mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
+            <div class="form-group d-flex align-items-center ml-xl-3">
+                <label class="mb-0 mr-2" for="quantia">Quantia<span class="requiredStar">*</span></label>
+                <input formControlName="quantia" type="text" class="form-control" id="amount" placeholder="200,00">
+            </div>
+            <button type="submit" class="btn transfer__block--btn ml-auto">
+                <img src="../../../assets/imgs/send-icon.png" alt="" class="transfer__block--btn--img">
+            </button>
+        </div>
+    </form>
+</div>

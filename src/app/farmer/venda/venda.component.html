@@ -1,0 +1,36 @@
+<p class="text-center text-muted" *ngIf="(orcamentos.length < 1)"> 
+    Sem orçamentos. Faça um pedido a um Empresário.
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-6" *ngFor="let orcamento of orcamentos">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Orçamento de {{ orcamento.nomeEmp }}</h5>
+                    <p class="card-text">Produto: {{ orcamento.nomeProduto }}</p>
+                    <p class="card-text">Quantidade: {{ orcamento.quantidade }}</p>
+                    <p class="card-text">Preco: {{ orcamento.preco }}</p>
+                    <a class="btn btn-warning" (click)="salvarCompra(orcamento, false)" >Cancelar Compra</a>
+                    <a class="btn btn-success" (click)="salvarCompra(orcamento, true)" >Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-6" *ngFor="let overPurchase of overPurchases">
+            <div class="card">
+                <div class="card-body vendaFalha">
+                    <h5 class="card-title">Orçamento de {{ overPurchase.nomeEmp }}</h5>
+                    <p class="card-text">Produto: {{ overPurchase.nomeProduto }}</p>
+                    <p class="card-text">Quantidade: {{ overPurchase.quantidade }}</p>
+                    <p class="card-text">Preco: {{ overPurchase.preco }}</p>
+                    <p class="error">Você não pode comprar esse produto, pois já tem ou já orçou 6 unidades deste tipo.</p>
+                    <a class="btn btn-warning" (click)="salvarCompra(overPurchase, false)" >Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

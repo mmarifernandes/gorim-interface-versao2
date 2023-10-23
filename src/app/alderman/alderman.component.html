@@ -1,0 +1,70 @@
+<app-alert></app-alert>
+<div *ngIf="infoVer != null">
+    <div class="content pt-5 pb-5">
+        <div *ngIf="(infoMundo$ | async) as mundo">
+            <div class="container main__block pt-2 pb-3 pl-3 pr-3">
+            
+                <app-header
+                    nomePersonagem="{{infoVer.nome}} (Vereador)"
+                    [dinheiros]="infoVer.saldo"
+                    [cidade]="infoVer.cidade"
+                    [rodada]="mundo.rodada"
+                    [poluicaoMundo]="mundo.poluicaoMundo"
+                ></app-header>
+                <hr>
+        
+                <i tabindex="0" (keyup.space)="sidebar.toggle()" (click)="sidebar.toggle()" class="fa fa-bars mr-2"></i>
+        
+                <div class="row">
+                    <div class="col-md-8 col-xl-7">
+                        <mat-tab-group mat-align-tabs="center">
+                            <mat-tab label="Sugestão para o Prefeito">
+                                <app-alderman-suggestion
+                                    [idVer]="idVer"
+                                    [idJogo]="idJogo"
+                                ></app-alderman-suggestion>
+                            </mat-tab>
+                            <mat-tab label="Tabelas de Valores">
+                                <app-table-values
+                                    role='vereador'
+                                    [cidade]="infoVer.cidade"
+                                ></app-table-values>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="col-md-4 col-xl-5">
+                        <a
+                            href="/{{idJogo}}/historico-vereador/{{idVer}}"
+                            target="_blank"
+                            class="btn btn--primary mb-2"
+                        >Abrir histórico</a>
+                        <app-transfer [idJogo]="idJogo" [idPessoa]="idVer" [etapa]="etapa"></app-transfer>
+                        <!--button
+                            class="btn btn--secondary mt-3"
+                            (click)="finalizaJogada()"
+                            [disabled]="!liberaBotao"
+                        >Finalizar jogada</button>
+                        <app-inline-alert
+                            [message]="inLineAlertButton"
+                        ></app-inline-alert-->
+                    </div>
+                </div>
+                
+                <app-sidebar #sidebar>
+                    <div class="container">
+                        <div class="row">
+                            <h3>Respostas do Prefeito para propostas feitas</h3>
+                            <app-response-list
+                                [idVer]="idVer"
+                                [idJogo]="idJogo"
+                            ></app-response-list>
+                        </div>
+                    </div>
+                </app-sidebar>
+            </div>
+        </div>
+    </div>
+    <app-chat
+        [chatInfo]="chatInfo"
+    ></app-chat>
+</div>

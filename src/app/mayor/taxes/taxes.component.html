@@ -1,0 +1,119 @@
+<div class="container">
+    <form [formGroup]="taxesForm" (submit)="salvarTaxes()">
+        <div class="row d-flex">
+            <div class="input-group mb-6 col-md-6 align-content-center flex-wrap">
+                <label id="tipo1">Tipo 1</label>
+                <mat-radio-group
+                    formControlName="tipo1"
+                    aria-labelledby="tipo1"
+                    name="tipo1"
+                    [disabled]="formControl[0]"
+                >
+                    <mat-radio-button
+                        value="none"
+                        name="nenhum"
+                        class="mr-3"
+                    >Nenhum</mat-radio-button>
+
+                    <mat-radio-button
+                        value="B"
+                        name="baixo"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[0], 1) == 'B'"
+                    >Baixo (D$ 5)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="M"
+                        name="medio"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[0], 1) == 'M'"
+                    >Médio (D$ 10)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="A"
+                        name="alto"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[0], 1) == 'A'"
+                    >Alto (D$ 15)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="input-group mb-6 col-md-6 align-content-center flex-wrap">
+                <label id="tipo2">Tipo 2</label>
+                <mat-radio-group
+                    formControlName="tipo2"
+                    aria-labelled="Tipo 2"
+                    name="tipo2"
+                    [disabled]="formControl[1]"
+                >
+                    <mat-radio-button
+                        value="none"
+                        name="nenhum"
+                        class="mr-3"
+                    >Nenhum</mat-radio-button>
+
+                    <mat-radio-button
+                        value="B"
+                        name="baixo"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[1], 2) == 'B'"
+                    >Baixo (5%)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="M"
+                        name="medio"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[1], 2) == 'M'"
+                    >Médio (10%)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="A"
+                        name="alto"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[1], 2) == 'A'"
+                    >Alto (15%)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="input-group mb-6 col-md-6 align-content-center flex-wrap">
+                <label id="tipo3">Tipo 3</label>
+                <mat-radio-group
+                    formControlName="tipo3"
+                    aria-labelled="Tipo 3"
+                    name="tipo3"
+                    [disabled]="formControl[2]"
+                >
+                    <mat-radio-button
+                        value="none"
+                        name="nenhum"
+                        class="mr-3"
+                    >Nenhum</mat-radio-button>
+
+                    <mat-radio-button
+                        value="B"
+                        name="baixo"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[2], 3) == 'B'"
+                    >Baixo (25%)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="M"
+                        name="medio"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[2], 3) == 'M'"
+                    >Médio (30%)</mat-radio-button>
+
+                    <mat-radio-button
+                        value="A"
+                        name="alto"
+                        class="mr-3"
+                        [disabled]="getValorChar(taxas[2], 3) == 'A'"
+                    >Alto (35%)</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn--primary m-0">Registrar</button>
+            </div>
+        </div>
+    </form>
+</div>

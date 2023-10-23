@@ -1,0 +1,42 @@
+<div class="container">
+    <form [formGroup]="fineForm" (submit)="salvarMulta()">
+        <div class="row">
+            <div class="input-group mb-6 col-md-6">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="idPessoa">Pessoa</label>
+                </div>
+                <select #idPessoa
+                    formControlName="idPessoa"
+                    class="custom-select"
+                    id="idPessoa"
+                >
+                    <option
+                        *ngFor="let pessoa of pessoas"
+                        value="{{pessoa.id}}"
+                    >
+                        {{pessoa.nome}}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group mb-6 col-md-6">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="tipo">Tipo de multa</label>
+                </div>
+                <select #tipo
+                    formControlName="tipo"
+                    class="custom-select"
+                    id="tipo"
+                >
+                    <option value="1">Baixa</option>
+                    <option value="2">Média</option>
+                    <option value="3">Alta</option>
+                </select>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn--primary m-0">Multar</button>
+            </div>
+        </div>
+    </form>
+</div>

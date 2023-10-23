@@ -1,0 +1,72 @@
+/* All the styles files of the project */
+
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/mixins";
+//@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
+@import 'src/assets/variables.scss';
+@import 'src/assets/global.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Overwrite the styles of the mat-dialog-container element globally, but only for those
+that have an id of `modal-component` */
+/* https://stackoverflow.com/a/48689004/9263761 */
+mat-dialog-container#master-modal {
+    border-radius: 11px;
+    overflow-y: hidden;
+}
+
+// pretty print of table values
+.tableValues {
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    h4 {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .table {
+        font-size: 14px;
+        .type {
+            color: rgba($color: #000000, $alpha: 0.5);
+        }
+        th {
+            vertical-align: middle;
+        }
+    }
+}
+
+// For "required stars" (*) in forms
+.requiredStar { 
+    color: red;
+    font-size: 12px;
+}
+
+.selected{
+    background-color: lime;
+}
+.notselected{
+    background-color: none;
+}
+
+ul{
+    list-style: none;
+    padding: 0px;
+}
+#buttonList{
+    width: -webkit-fill-available;
+    border: none;
+}
+
+#containerJoin{
+    display: flex;
+    width: 40vw;
+    align-items: baseline;
+}
+
+#jogos{
+    width: 50%;
+    margin-left: 5%;
+}

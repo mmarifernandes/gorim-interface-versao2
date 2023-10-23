@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'active-sidebar': isShown }">
+    <div class="side-bar">
+        <i 
+            tabindex="0" 
+            class="close fa fa-window-close" 
+            (keyup.space)="toggle()" 
+            (click)="toggle()">
+        </i>
+        <ng-content></ng-content>
+    </div>
+    <div class="overlay" (click)="toggle()"></div>
+</div>

@@ -1,0 +1,25 @@
+<div class="header pt-3 pb-3">
+    <div class="row">
+        <div class="col-md-4 order-3 order-md-1 mt-3 mt-md-0">
+            <div class="d-flex header__info--text justify-content-center justify-content-md-start">
+                <div class="font-weight-bolder">Nome:</div>
+                <div class="ml-1">{{ nomePersonagem }}</div>
+            </div>
+            <div class="d-flex header__info--text justify-content-center justify-content-md-start">
+                <div class="font-weight-bolder">Cidade:</div>
+                <div class="ml-1">{{ cidade }}</div>
+            </div>
+            <div class="d-flex header__info--text justify-content-center justify-content-md-start" *ngIf="dinheiros != null">
+                <div class="font-weight-bolder">{{ saldo }}:</div>
+                <div class="ml-1 header__info--money">D${{ dinheiros }}</div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center order-2 order-md-3 ">
+            <h2>Rodada {{ rodada }}</h2>
+            <span>Poluição mundial {{ poluicaoMundo | number:'.0-2' }}%</span>
+        </div>
+        <div class="col-md-4 text-center order-1 order-md-3 ">
+            <img src="../../assets/imgs/gorimLogo_v2.png" alt="Logo Gorim" class="w-75">
+        </div>
+    </div>
+</div>

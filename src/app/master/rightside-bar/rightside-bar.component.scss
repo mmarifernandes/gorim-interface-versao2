@@ -1,0 +1,14 @@
+@import '../../../styles.scss';
+@import '../master.component.scss';
+
+.finalizado {
+    background-color: green;
+}
+
+.naoFinalizado {
+    background-color: red;
+}
+
+.naoEntrou {
+    background-color: yellow;
+}
