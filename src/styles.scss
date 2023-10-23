@@ -45,7 +45,7 @@ mat-dialog-container#master-modal {
 }
 
 .selected{
-    background-color: lime;
+    background-color: lime !important;
 }
 .notselected{
     background-color: none;
@@ -54,19 +54,30 @@ mat-dialog-container#master-modal {
 ul{
     list-style: none;
     padding: 0px;
+    overflow-y: scroll;
+    height: 25vh;
+}
+
+li{
+    margin-top: 5px;
 }
 #buttonList{
     width: -webkit-fill-available;
-    border: none;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border: 1px solid #4CAF50;
+    background-color: white;
+    border-radius: 5px;
 }
 
 #containerJoin{
     display: flex;
-    width: 40vw;
+    // width: 40vw;
     align-items: baseline;
+    justify-content: center;
 }
 
-#jogos{
-    width: 50%;
-    margin-left: 5%;
-}
+// #jogos{
+//     width: 50%;
+//     margin-left: 5%;
+// }
