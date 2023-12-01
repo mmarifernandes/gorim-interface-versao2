@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ApiUrl: 'http://localhost:8080',
+  ApiUrl: 'http://gorim.c3.furg.br:8080',
   WebSocketURL: 'ws://localhost:8080/ws'
 };
 
