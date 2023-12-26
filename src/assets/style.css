@@ -1,0 +1,246 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+#inicio{
+    width: 50vw;
+}
+body{
+    background-color: #EEEEEE;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+html{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    display: flex;
+    justify-content: center;
+}
+.menu{
+    text-transform:uppercase;
+    background-color: #F8F8F8;
+    width: 85vw;
+    margin: 0 auto;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 10.9px -4px rgba(0, 0, 0, 0.09);
+}
+menu{
+    padding: 0 !important;
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+}
+menu li{
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    font-size: 1.5rem;
+    color: #444444;
+}
+
+menu li:hover{
+    color: #46D33F;
+}
+
+.conteudo{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin: 15px;
+}
+main{
+    width: 64vw;
+    background-color: #F8F8F8;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10.9px -4px rgba(0, 0, 0, 0.09);
+
+}
+aside{
+    width: 20vw;
+    background-color: #F8F8F8;
+    margin-right: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10.9px -4px rgba(0, 0, 0, 0.09);
+
+}
+aside ol{
+    list-style: none;
+    padding: 0;
+    padding: 50px;
+}
+aside li{
+    line-height: 5vh;
+    font-size: 1.1rem;
+}
+
+article{
+    padding: 50px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:visited{
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+}
+
+h2{
+    color: #AB42C5;
+    font-size: 2rem;
+}
+
+footer{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    background-color: rgb(107 157 152);
+    height: 25vh;
+    justify-content: center;
+    margin: 0 !important;
+    box-shadow: 0px 4px 10.9px -4px rgba(0, 0, 0, 0.09);
+    padding-top: 5vh;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    color: white;
+    font-size: 14px;
+
+}
+
+footer img{
+    width: 8vw;
+    /* height: 23vh; */
+    padding: 30px;
+}
+aside li:hover{
+    color: #FF9600;
+}
+
+p{
+    font-size: 15px;
+}
+
+li{
+    font-size: 15px;
+}
+
+img{
+    width: 25vw;
+    height: 100%;
+}
+#images_rodada{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* align-items: center; */
+}
+
+#tabela{
+    width: 50vw !important;
+}
+figure{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+figcaption{
+    font-size: 12px;
+}
+h3{
+    font-size: 1.5rem;
+}
+aside #personagens li{
+    font-size: 14px;
+    padding-left: 0.5vw;
+    line-height: 20px;
+    list-style: decimal;
+    cursor: pointer;
+    color: #7a7a7a;
+}
+aside #personagens li:hover{
+    color: #FF9600;
+}
+
+ol #personagens{
+    padding-left: 20px !important;
+    padding: 0;
+}
+#button{
+    position: fixed;
+    margin-left: 90%;
+    padding: 5px;
+    height: 60px;
+    margin-top: 20%;
+    width: 80px;
+    display: flex;
+    line-height: 15px;
+    background-color: rgb(0, 177, 169);
+    color: white;
+    border-radius: 100px;
+    text-align: center;
+    align-items: center;
+    box-shadow: 0px 4px 10.9px -4px rgb(0 0 0 / 46%);
+}
+#tela{
+    width: 50vw;
+}
+
+@media (max-width: 900px) {
+    menu li{
+      font-size: 1rem;
+    }
+    #button{
+        display: none;
+    }
+    aside{
+        display: none;
+    }
+    main{
+        width: 100%;
+    }
+    .menu{
+        text-transform: uppercase;
+        background-color: #F8F8F8;
+        min-width: -webkit-fill-available;        /* margin: 0 auto; */
+        margin: 15px;
+        height: 8vh;
+        display: flex;
+        overflow: scroll;
+        border-radius: 5px;
+        margin-top: 10px;
+        box-shadow: 0px 4px 10.9px -4px rgba(0, 0, 0, 0.09);
+        flex-direction: column;
+        justify-content: center;
+    }
+    #tela{
+        width: 80vw;
+    }
+    article{
+        padding: 25px;
+    }
+    #images_rodada{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #images_rodada img{
+        width: 80vw !important;
+    }
+    footer img{
+        width: 10vw;
+        /* height: auto; */
+        padding: 30px;
+    }
+  }

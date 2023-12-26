@@ -50,7 +50,10 @@ export class BeginComponent implements OnInit{
         this.shouldShowMessage = true;
     }
 
-    
+    goToPage(){
+        window.open('http://gorim.c3.furg.br/instrucoes/gorim.html', "_blank");
+        // console.log("teste")
+    }
 
     comecarJogo(){
         if(this.beginForm.valid){

@@ -25,11 +25,13 @@
                         "aot": true,
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets"
+                            "src/assets",
+                            { "glob": "gorim.html", "input": "src/instrucoes/", "output": "/instrucoes/" }
                         ],
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "src/styles.scss",
+                            "src/style.css",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "./src/assets/fonts/fontawesome/css/all.min.css"
                         ],

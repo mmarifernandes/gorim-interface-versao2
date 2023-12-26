@@ -17,7 +17,9 @@
                 message="Quantidade deve ser maior que 6"
                 [type]="messageType">
             ></app-inline-alert>
-            <button class="btn btn--secondary mt-3" type="submit" [disabled]="beginFormButtonDisabled">Começar <span *ngIf="beginFormButtonDisabled"><img src="../../../assets/imgs/loading.gif" height="20px" width="20px "/></span></button>
+            <button class="btn btn--secondary mt-3" type="submit" [disabled]="beginFormButtonDisabled" id="comecar">Começar <span *ngIf="beginFormButtonDisabled" id><img src="../../../assets/imgs/loading.gif" height="20px"/></span></button>
+            <button class="btn btn--secondary mt-3" type="button" (click)="goToPage()" [disabled]="beginFormButtonDisabled" id="comojogar" >Como jogar <span *ngIf="beginFormButtonDisabled"><img src="../../../assets/imgs/loading.gif" height="20px"/></span></button>
+
         </div>
     </form>
 </div>
